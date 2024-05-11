@@ -92,7 +92,15 @@ export class ClassMapsService {
     return `This action updates a #${id} classMap`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} classMap`;
+  async remove(id: number) {
+    try {
+      const classMapToRemove = await this.class_mapsModel.findByPk(id);
+      if (!classMapToRemove)
+        throw new NotFoundException(`ClassMap with id ${id} not found`);
+      await classMapToRemove.destroy();
+      return `ClassMap with id ${id} has been successfully removed`;
+    } catch (e) {
+      throw e.message;
+    }
   }
 }
