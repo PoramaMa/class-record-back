@@ -1,4 +1,4 @@
-import { IsDateString, IsNumber, IsString } from 'class-validator';
+import { IsDateString, IsString } from 'class-validator';
 
 export class CreateStudentDto {
   @IsString()
@@ -19,6 +19,6 @@ export class CreateStudentDto {
   @IsDateString()
   readonly birthdate: Date;
 
-  @IsNumber()
-  readonly grade_level: number;
+  @IsString()
+  readonly grade_level: string;
 }

@@ -24,8 +24,8 @@ export class students extends Model {
   @Column
   birthdate: Date;
 
-  @Column({ type: DataType.INTEGER })
-  grade_level: number;
+  @Column
+  grade_level: string;
 
   @Column({ defaultValue: true })
   isActive: boolean;

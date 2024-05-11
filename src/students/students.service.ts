@@ -54,6 +54,18 @@ export class StudentsService {
         student_id: id,
         isActive: true,
       },
+      include: [
+        {
+          model: class_maps,
+          as: 'class_maps',
+          include: [
+            {
+              model: classrooms,
+              as: 'classrooms',
+            },
+          ],
+        },
+      ],
     });
     if (!data) {
       throw new NotFoundException('Student not found');
