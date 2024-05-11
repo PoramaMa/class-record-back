@@ -1,4 +1,4 @@
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsDateString, IsOptional, IsString } from 'class-validator';
 
 export class UpdateClassroomDto {
   @IsOptional()
@@ -10,8 +10,8 @@ export class UpdateClassroomDto {
   readonly room_name?: string;
 
   @IsOptional()
-  @IsNumber()
-  readonly academic_year?: number;
+  @IsDateString()
+  readonly academic_year?: Date;
 
   @IsOptional()
   @IsString()
