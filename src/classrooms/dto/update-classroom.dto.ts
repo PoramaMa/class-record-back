@@ -3,21 +3,17 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 export class UpdateClassroomDto {
   @IsOptional()
   @IsString()
-  readonly number?: string;
+  readonly room_number?: string;
 
   @IsOptional()
   @IsString()
-  readonly name?: string;
+  readonly room_name?: string;
 
   @IsOptional()
   @IsNumber()
-  readonly grade_level?: number;
+  readonly academic_year?: number;
 
   @IsOptional()
-  @IsNumber()
-  readonly school_year?: number;
-
-  @IsOptional()
-  @IsNumber()
-  readonly teacher_id?: bigint;
+  @IsString()
+  readonly teacher_name?: string;
 }

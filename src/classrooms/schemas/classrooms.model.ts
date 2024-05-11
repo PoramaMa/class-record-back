@@ -1,5 +1,5 @@
-import { BelongsTo, Column, Model, Table } from 'sequelize-typescript';
-import { teachers } from 'src/teachers/schemas/teachers.model';
+import { Column, HasMany, Model, Table } from 'sequelize-typescript';
+import { class_maps } from 'src/class_maps/schemas/class_maps.model';
 
 @Table
 export class classrooms extends Model {
@@ -7,23 +7,20 @@ export class classrooms extends Model {
   classroom_id: number;
 
   @Column
-  number: string;
+  room_number: string;
 
   @Column
-  name: string;
+  room_name: string;
 
   @Column
-  grade_level: number;
+  academic_year: number;
 
   @Column
-  school_year: number;
-
-  @Column
-  teacher_id: number;
+  teacher_name: string;
 
   @Column({ defaultValue: true })
   isActive: boolean;
 
-  @BelongsTo(() => teachers, 'teacher_id')
-  teachers: teachers;
+  @HasMany(() => class_maps, { foreignKey: 'classroom_id' })
+  class_maps: class_maps[];
 }

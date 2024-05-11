@@ -2,17 +2,14 @@ import { IsNumber, IsString } from 'class-validator';
 
 export class CreateClassroomDto {
   @IsString()
-  readonly number: string;
+  readonly room_number: string;
 
   @IsString()
-  readonly name: string;
+  readonly room_name: string;
 
   @IsNumber()
-  readonly grade_level: number;
+  readonly academic_year: number;
 
-  @IsNumber()
-  readonly school_year: number;
-
-  @IsNumber()
-  readonly teacher_id: bigint;
+  @IsString()
+  readonly teacher_name: string;
 }

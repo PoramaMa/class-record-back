@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { teachers } from 'src/teachers/schemas/teachers.model';
 import { CreateClassroomDto } from './dto/create-classroom.dto';
 import { UpdateClassroomDto } from './dto/update-classroom.dto';
 import { classrooms } from './schemas/classrooms.model';
@@ -14,11 +13,10 @@ export class ClassroomsService {
   async create(createClassroomDto: CreateClassroomDto): Promise<classrooms> {
     try {
       const result = await this.classroomsModel.create({
-        number: createClassroomDto.number,
-        name: createClassroomDto.name,
-        grade_level: createClassroomDto.grade_level,
-        school_year: createClassroomDto.school_year,
-        teacher_id: createClassroomDto.teacher_id,
+        room_number: createClassroomDto.room_number,
+        room_name: createClassroomDto.room_name,
+        academic_year: createClassroomDto.academic_year,
+        teacher_name: createClassroomDto.teacher_name,
       });
       return result;
     } catch (err) {
@@ -32,12 +30,6 @@ export class ClassroomsService {
       where: {
         isActive: true,
       },
-      include: [
-        {
-          model: teachers,
-          as: 'teachers',
-        },
-      ],
     });
   }
 
@@ -47,12 +39,6 @@ export class ClassroomsService {
         classroom_id: id,
         isActive: true,
       },
-      include: [
-        {
-          model: teachers,
-          as: 'teachers',
-        },
-      ],
     });
     if (!data) {
       throw new NotFoundException('Student not found');
@@ -64,11 +50,10 @@ export class ClassroomsService {
     try {
       await this.classroomsModel.update(
         {
-          number: updateClassroomDto.number,
-          name: updateClassroomDto.name,
-          grade_level: updateClassroomDto.grade_level,
-          school_year: updateClassroomDto.school_year,
-          teacher_id: updateClassroomDto.teacher_id,
+          room_number: updateClassroomDto.room_number,
+          room_name: updateClassroomDto.room_name,
+          academic_year: updateClassroomDto.academic_year,
+          teacher_name: updateClassroomDto.teacher_name,
         },
         {
           where: {

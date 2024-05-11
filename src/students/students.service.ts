@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { classrooms } from 'src/classrooms/schemas/classrooms.model';
+import { class_maps } from 'src/class_maps/schemas/class_maps.model';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { students } from './schemas/students.model';
@@ -31,6 +33,18 @@ export class StudentsService {
       where: {
         isActive: true,
       },
+      include: [
+        {
+          model: class_maps,
+          as: 'class_maps',
+          include: [
+            {
+              model: classrooms,
+              as: 'classrooms',
+            },
+          ],
+        },
+      ],
     });
   }
 

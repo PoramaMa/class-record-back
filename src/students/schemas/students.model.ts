@@ -1,4 +1,5 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { class_maps } from 'src/class_maps/schemas/class_maps.model';
 
 @Table
 export class students extends Model {
@@ -28,4 +29,7 @@ export class students extends Model {
 
   @Column({ defaultValue: true })
   isActive: boolean;
+
+  @HasMany(() => class_maps, { foreignKey: 'student_id' })
+  class_maps: class_maps[];
 }

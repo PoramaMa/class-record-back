@@ -1,5 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { classrooms } from 'src/classrooms/schemas/classrooms.model';
+import { students } from 'src/students/schemas/students.model';
 import { CreateClassMapDto } from './dto/create-class_map.dto';
 import { UpdateClassMapDto } from './dto/update-class_map.dto';
 import { class_maps } from './schemas/class_maps.model';
@@ -28,11 +30,40 @@ export class ClassMapsService {
       where: {
         isActive: true,
       },
+      include: [
+        {
+          model: classrooms,
+          as: 'classrooms',
+        },
+        {
+          model: students,
+          as: 'students',
+        },
+      ],
     });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} classMap`;
+  async findOne(id: number) {
+    const data = await this.class_mapsModel.findOne({
+      where: {
+        class_map_id: id,
+        isActive: true,
+      },
+      include: [
+        {
+          model: classrooms,
+          as: 'classrooms',
+        },
+        {
+          model: students,
+          as: 'students',
+        },
+      ],
+    });
+    if (!data) {
+      throw new NotFoundException('class_mapsModel not found');
+    }
+    return data;
   }
 
   update(id: number, updateClassMapDto: UpdateClassMapDto) {
