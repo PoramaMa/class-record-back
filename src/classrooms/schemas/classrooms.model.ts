@@ -13,7 +13,7 @@ export class classrooms extends Model {
   room_name: string;
 
   @Column
-  academic_year: Date;
+  academic_year: number;
 
   @Column
   teacher_name: string;
