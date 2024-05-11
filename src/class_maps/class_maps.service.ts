@@ -66,6 +66,28 @@ export class ClassMapsService {
     return data;
   }
 
+  async findByRoomId(id: number) {
+    const data = await this.class_mapsModel.findAll({
+      include: [
+        {
+          model: classrooms,
+          as: 'classrooms',
+          where: {
+            classroom_id: id,
+          },
+        },
+        {
+          model: students,
+          as: 'students',
+        },
+      ],
+    });
+    if (!data) {
+      throw new NotFoundException('class_mapsModel not found');
+    }
+    return data;
+  }
+
   update(id: number, updateClassMapDto: UpdateClassMapDto) {
     return `This action updates a #${id} classMap`;
   }

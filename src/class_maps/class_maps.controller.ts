@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { ClassMapsService } from './class_maps.service';
 import { CreateClassMapDto } from './dto/create-class_map.dto';
 import { UpdateClassMapDto } from './dto/update-class_map.dto';
@@ -22,8 +30,16 @@ export class ClassMapsController {
     return this.classMapsService.findOne(+id);
   }
 
+  @Get('room/:id')
+  findByRoomId(@Param('id') id: string) {
+    return this.classMapsService.findByRoomId(+id);
+  }
+
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClassMapDto: UpdateClassMapDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateClassMapDto: UpdateClassMapDto,
+  ) {
     return this.classMapsService.update(+id, updateClassMapDto);
   }
 
