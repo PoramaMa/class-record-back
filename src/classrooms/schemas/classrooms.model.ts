@@ -13,6 +13,9 @@ export class classrooms extends Model {
   room_name: string;
 
   @Column
+  grade_level: string;
+
+  @Column
   academic_year: number;
 
   @Column

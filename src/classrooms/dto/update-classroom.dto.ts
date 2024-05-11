@@ -10,6 +10,10 @@ export class UpdateClassroomDto {
   readonly room_name?: string;
 
   @IsOptional()
+  @IsString()
+  readonly grade_level?: string;
+
+  @IsOptional()
   @IsNumber()
   readonly academic_year?: number;
 

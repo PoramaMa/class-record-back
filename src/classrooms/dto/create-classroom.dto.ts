@@ -7,6 +7,9 @@ export class CreateClassroomDto {
   @IsString()
   readonly room_name: string;
 
+  @IsString()
+  readonly grade_level: string;
+
   @IsNumber()
   readonly academic_year: number;
 
