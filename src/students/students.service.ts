@@ -73,6 +73,34 @@ export class StudentsService {
     return data;
   }
 
+  async findByRoomId(id: number): Promise<students[]> {
+    const data = await this.studentsModel.findAll({
+      where: {
+        isActive: true,
+      },
+      include: [
+        {
+          model: class_maps,
+          as: 'class_maps',
+          where: {
+            classroom_id: id,
+            isActive: true,
+          },
+          include: [
+            {
+              model: classrooms,
+              as: 'classrooms',
+            },
+          ],
+        },
+      ],
+    });
+    if (!data) {
+      throw new NotFoundException('Student not found');
+    }
+    return data;
+  }
+
   async update(id: number, updateStudentDto: UpdateStudentDto) {
     try {
       await this.studentsModel.update(
