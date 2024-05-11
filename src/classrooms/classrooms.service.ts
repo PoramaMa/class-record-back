@@ -15,6 +15,7 @@ export class ClassroomsService {
       const result = await this.classroomsModel.create({
         room_number: createClassroomDto.room_number,
         room_name: createClassroomDto.room_name,
+        grade_level: createClassroomDto.grade_level,
         academic_year: createClassroomDto.academic_year,
         teacher_name: createClassroomDto.teacher_name,
       });
@@ -52,6 +53,7 @@ export class ClassroomsService {
         {
           room_number: updateClassroomDto.room_number,
           room_name: updateClassroomDto.room_name,
+          grade_level: updateClassroomDto.grade_level,
           academic_year: updateClassroomDto.academic_year,
           teacher_name: updateClassroomDto.teacher_name,
         },
