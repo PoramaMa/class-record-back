@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { ClassroomsService } from './classrooms.service';
 import { CreateClassroomDto } from './dto/create-classroom.dto';
@@ -21,8 +22,8 @@ export class ClassroomsController {
   }
 
   @Get()
-  findAll() {
-    return this.classroomsService.findAll();
+  findAll(@Query() query: any) {
+    return this.classroomsService.findAll(query);
   }
 
   @Get(':id')
