@@ -6,6 +6,7 @@ import { ClassroomsModule } from './classrooms/classrooms.module';
 import { classrooms } from './classrooms/schemas/classrooms.model';
 import { ClassMapsModule } from './class_maps/class_maps.module';
 import { class_maps } from './class_maps/schemas/class_maps.model';
+import { HomeController } from './home/home.controller';
 import { students } from './students/schemas/students.model';
 import { StudentsModule } from './students/students.module';
 
@@ -32,7 +33,7 @@ import { StudentsModule } from './students/students.module';
     ClassroomsModule,
     ClassMapsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, HomeController],
+  providers: [AppService, HomeController],
 })
 export class AppModule {}
