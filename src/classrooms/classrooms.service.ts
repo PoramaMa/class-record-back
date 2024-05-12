@@ -30,7 +30,7 @@ export class ClassroomsService {
   }
 
   async findAll(query: any): Promise<classrooms[]> {
-    console.log(query.q);
+    console.log('query :: ', query.q);
     const whereCondition = {
       isActive: true,
     };
