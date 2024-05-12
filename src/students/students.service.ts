@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Op } from 'sequelize';
 import { classrooms } from 'src/classrooms/schemas/classrooms.model';
 import { class_maps } from 'src/class_maps/schemas/class_maps.model';
 import { CreateStudentDto } from './dto/create-student.dto';
@@ -28,11 +29,24 @@ export class StudentsService {
     }
   }
 
-  async findAll(): Promise<students[]> {
+  async findAll(query: any): Promise<students[]> {
+    console.log('query :: ', query.q);
+    const whereCondition = {
+      isActive: true,
+    };
+    if (query.q) {
+      const searchCondition = {
+        [Op.or]: [
+          { student_code: { [Op.like]: `%${query.q}%` } },
+          { title: { [Op.like]: `%${query.q}%` } },
+          { fname: { [Op.like]: `%${query.q}%` } },
+          { lname: { [Op.like]: `%${query.q}%` } },
+        ],
+      };
+      Object.assign(whereCondition, searchCondition);
+    }
     return this.studentsModel.findAll({
-      where: {
-        isActive: true,
-      },
+      where: whereCondition,
       include: [
         {
           model: class_maps,
