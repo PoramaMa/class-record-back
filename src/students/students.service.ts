@@ -30,11 +30,11 @@ export class StudentsService {
   }
 
   async findAll(query: any): Promise<students[]> {
-    console.log('query :: ', query.q);
     const whereCondition = {
       isActive: true,
     };
     if (query.q) {
+      console.log('======================== query :: ', query.q);
       const searchCondition = {
         [Op.or]: [
           { student_code: { [Op.like]: `%${query.q}%` } },
@@ -44,6 +44,25 @@ export class StudentsService {
         ],
       };
       Object.assign(whereCondition, searchCondition);
+    }
+    if (query.year) {
+      console.log('======================== year :: ', query.year);
+      Object.assign(whereCondition, {
+        '$class_maps.classrooms.academic_year$': query.year,
+      });
+    }
+    if (query.grade) {
+      console.log('======================== grade :: ', query.grade);
+      Object.assign(whereCondition, {
+        grade_level: query.grade,
+      });
+    }
+
+    if (query.class) {
+      console.log('======================== class :: ', query.class);
+      Object.assign(whereCondition, {
+        '$class_maps.classrooms.classroom_id$': query.class,
+      });
     }
     return this.studentsModel.findAll({
       where: whereCondition,
