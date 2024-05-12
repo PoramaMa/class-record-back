@@ -13,7 +13,7 @@ docker rmi class-record-back
 docker image build -t class-record-back ./
 
 # รัน container จาก image ใหม่ที่สร้างขึ้น
-docker run --name class-record-back -d -p 3002:3000 class-record-back
+docker run --name class-record-back -d -p 3004:3000 class-record-back
 
 # สั่ง container รีสตาทอัตโนมัติทุกครั้ง
 docker update --restart always class-record-back
