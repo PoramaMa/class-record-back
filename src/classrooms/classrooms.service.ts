@@ -100,6 +100,7 @@ export class ClassroomsService {
         {
           model: class_maps,
           as: 'class_maps',
+          required: false,
           where: {
             isActive: true,
           },
