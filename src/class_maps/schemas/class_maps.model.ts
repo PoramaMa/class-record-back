@@ -14,11 +14,11 @@ export class class_maps extends Model {
   class_map_id: number;
 
   @ForeignKey(() => students)
-  @Column
+  @Column({ allowNull: false })
   student_id: number;
 
   @ForeignKey(() => classrooms)
-  @Column
+  @Column({ allowNull: false })
   classroom_id: number;
 
   @BelongsTo(() => students)
