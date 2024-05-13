@@ -1,3 +1,18 @@
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_code VARCHAR(6) NOT NULL,
+    title VARCHAR(4) NOT NULL,
+    fname VARCHAR(255) NOT NULL,
+    lname VARCHAR(255) NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    birthdate DATETIME NOT NULL,
+    grade_level VARCHAR(3) NOT NULL,
+    isActive TINYINT(1) NOT NULL DEFAULT 1,
+    createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
 INSERT INTO students
     (student_code, title, fname, lname, gender, birthdate, grade_level, isActive, createdAt, updatedAt)
 VALUES
