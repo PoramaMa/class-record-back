@@ -1,4 +1,4 @@
-import { Column, HasMany, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { class_maps } from 'src/class_maps/schemas/class_maps.model';
 
 @Table
@@ -6,13 +6,13 @@ export class classrooms extends Model {
   @Column({ primaryKey: true, autoIncrement: true })
   classroom_id: number;
 
-  @Column
+  @Column({ type: DataType.STRING(3) })
   room_number: string;
 
   @Column
   room_name: string;
 
-  @Column
+  @Column({ type: DataType.STRING(3) })
   grade_level: string;
 
   @Column
