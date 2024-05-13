@@ -27,7 +27,7 @@ export class students extends Model {
   @Column({ type: DataType.STRING(3) })
   grade_level: string;
 
-  @Column({ defaultValue: true })
+  @Column({ allowNull: false, defaultValue: true })
   isActive: boolean;
 
   @HasMany(() => class_maps, { foreignKey: 'student_id' })

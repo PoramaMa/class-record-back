@@ -27,6 +27,6 @@ export class class_maps extends Model {
   @BelongsTo(() => classrooms)
   classrooms: classrooms;
 
-  @Column({ defaultValue: true })
+  @Column({ allowNull: false, defaultValue: true })
   isActive: boolean;
 }

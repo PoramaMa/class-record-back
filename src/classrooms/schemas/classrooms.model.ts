@@ -21,7 +21,7 @@ export class classrooms extends Model {
   @Column
   teacher_name: string;
 
-  @Column({ defaultValue: true })
+  @Column({ allowNull: false, defaultValue: true })
   isActive: boolean;
 
   @HasMany(() => class_maps, { foreignKey: 'classroom_id' })
