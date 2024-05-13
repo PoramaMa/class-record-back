@@ -36,6 +36,11 @@ export class StudentsController {
     return this.studentsService.findByRoomId(+id);
   }
 
+  @Get('grade/:level')
+  findByGradeLevel(@Param('level') level: string) {
+    return this.studentsService.findByGradeLevel(+level);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
     return this.studentsService.update(+id, updateStudentDto);

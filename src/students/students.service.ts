@@ -134,6 +134,19 @@ export class StudentsService {
     return data;
   }
 
+  async findByGradeLevel(level: number): Promise<students[]> {
+    const data = await this.studentsModel.findAll({
+      where: {
+        grade_level: level,
+        isActive: true,
+      },
+    });
+    if (!data) {
+      throw new NotFoundException('Student not found');
+    }
+    return data;
+  }
+
   async update(id: number, updateStudentDto: UpdateStudentDto) {
     try {
       await this.studentsModel.update(

@@ -90,6 +90,34 @@ export class ClassroomsService {
     return data;
   }
 
+  async findByGradeLevel(level: number): Promise<classrooms[]> {
+    const data = await this.classroomsModel.findAll({
+      where: {
+        grade_level: level,
+        isActive: true,
+      },
+      include: [
+        {
+          model: class_maps,
+          as: 'class_maps',
+          where: {
+            isActive: true,
+          },
+          include: [
+            {
+              model: students,
+              as: 'students',
+            },
+          ],
+        },
+      ],
+    });
+    if (!data) {
+      throw new NotFoundException('Student not found');
+    }
+    return data;
+  }
+
   async update(id: number, updateClassroomDto: UpdateClassroomDto) {
     try {
       await this.classroomsModel.update(
