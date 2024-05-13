@@ -1,4 +1,4 @@
-import { IsDateString, IsOptional, IsString } from 'class-validator';
+import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateStudentDto {
   @IsOptional()
@@ -26,6 +26,6 @@ export class UpdateStudentDto {
   readonly birthdate?: Date;
 
   @IsOptional()
-  @IsString()
-  readonly grade_level?: string;
+  @IsNumber()
+  readonly grade_level?: number;
 }

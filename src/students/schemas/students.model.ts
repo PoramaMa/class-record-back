@@ -9,7 +9,7 @@ export class students extends Model {
   @Column({ type: DataType.STRING(6) })
   student_code: string;
 
-  @Column
+  @Column({ type: DataType.STRING(4) })
   title: string;
 
   @Column
@@ -18,14 +18,14 @@ export class students extends Model {
   @Column
   lname: string;
 
-  @Column
+  @Column({ type: DataType.STRING(10) })
   gender: string;
 
   @Column
   birthdate: Date;
 
   @Column
-  grade_level: string;
+  grade_level: number;
 
   @Column({ defaultValue: true })
   isActive: boolean;
