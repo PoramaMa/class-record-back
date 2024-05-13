@@ -13,15 +13,21 @@ export class ClassMapsService {
   ) {}
 
   async create(createClassMapDto: CreateClassMapDto): Promise<class_maps> {
-    try {
+    const data = await this.class_mapsModel.findOne({
+      where: {
+        student_id: createClassMapDto.student_id,
+        classroom_id: createClassMapDto.classroom_id,
+        isActive: true,
+      },
+    });
+    if (data) {
+      throw new NotFoundException('Student in classroom already exists');
+    } else {
       const result = await this.class_mapsModel.create({
         student_id: createClassMapDto.student_id,
         classroom_id: createClassMapDto.classroom_id,
       });
       return result;
-    } catch (err) {
-      console.log(err);
-      return err;
     }
   }
 
