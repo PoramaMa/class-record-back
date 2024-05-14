@@ -108,6 +108,9 @@ export class ClassroomsService {
             {
               model: students,
               as: 'students',
+              where: {
+                isActive: true,
+              },
             },
           ],
         },
