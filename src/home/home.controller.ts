@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class HomeController {
   @Get()
   getHome() {
-    return { message: 'Welcome to the API classroom record V1!' };
+    return { message: 'Welcome to the API classroom record V1!!' };
   }
 }
